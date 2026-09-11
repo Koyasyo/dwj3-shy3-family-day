@@ -148,6 +148,18 @@ h1 .ln2{display:block;font-family:var(--disp);font-weight:700;
 .photo-wrap::before{content:"";position:absolute;inset:-14px -10px;border-radius:4px;
   background:radial-gradient(60% 50% at 50% 40%,rgba(255,255,255,.22),transparent 70%);
   filter:blur(6px)}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));
+  gap:clamp(10px,3vw,16px);margin-top:clamp(22px,6vw,34px)}
+.g-item{position:relative;margin:0;background:var(--paper);padding:5px 5px 8px;
+  border-radius:3px;box-shadow:0 12px 22px -12px rgba(10,40,70,.5),0 1px 0 rgba(255,255,255,.5) inset;
+  transition:transform .3s cubic-bezier(.2,.9,.25,1);opacity:0;
+  animation:rise .6s cubic-bezier(.2,.9,.25,1) forwards;
+  animation-delay:calc(var(--i,0) * .06s)}
+.g-item:nth-child(odd){transform:rotate(-2deg)}
+.g-item:nth-child(even){transform:rotate(1.6deg)}
+.g-item:hover{transform:rotate(0deg) translateY(-3px) scale(1.03);z-index:2}
+.g-item img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:1px;display:block;background:#e7eef4}
+
 figure.photo{position:relative;margin:0;background:var(--paper);
   padding:clamp(10px,2.8vw,14px) clamp(10px,2.8vw,14px) clamp(36px,8.6vw,48px);
   border-radius:3px;transform:rotate(-1.1deg);
@@ -157,6 +169,7 @@ figure.photo:hover{transform:rotate(0deg) translateY(-3px)}
 .frame{position:relative;aspect-ratio:4/3;overflow:hidden;background:#e7eef4;border-radius:1px}
 .frame img{width:100%;height:100%;object-fit:cover;display:block}
 .frame img[hidden]{display:none}
+.ph[hidden]{display:none}
 .ph{position:absolute;inset:0;display:grid;place-content:center;gap:10px;
   text-align:center;color:#3f7aa8;
   background:
@@ -254,8 +267,8 @@ footer .sep{display:inline-block;margin:0 .7em;color:var(--sky-top)}
   <div class="photo-wrap reveal d5">
     <figure class="photo">
       <div class="frame">
-        <!-- ▼写真の差し替えはここだけ： 同じフォルダに photo.jpg を置く -->
-        <img id="mainPhoto" src="photo.jpg" alt="Family Day の写真" hidden
+        <!-- ▼メイン写真の差し替えはここだけ： 同じフォルダに main.jpg を置く -->
+        <img id="mainPhoto" src="main.jpg" alt="Family Day の写真" hidden
              onload="this.hidden=false;this.nextElementSibling.hidden=true"
              onerror="this.hidden=true">
         <div class="ph" id="phBox">
@@ -265,6 +278,30 @@ footer .sep{display:inline-block;margin:0 .7em;color:var(--sky-top)}
       </div>
       <figcaption>DWJ3 × SHY3</figcaption>
     </figure>
+
+    <!-- ▼追加の写真：photo1.jpg, photo2.jpg ... の連番で同じフォルダに置くと自動で下に並びます（最大20枚。無い番号は何も表示されません） -->
+    <div class="gallery">
+      <figure class="g-item" hidden style="--i:0"><img src="photo1.jpg" alt="" onload="this.closest('.g-item').hidden=false"></figure>
+      <figure class="g-item" hidden style="--i:1"><img src="photo2.jpg" alt="" onload="this.closest('.g-item').hidden=false"></figure>
+      <figure class="g-item" hidden style="--i:2"><img src="photo3.jpg" alt="" onload="this.closest('.g-item').hidden=false"></figure>
+      <figure class="g-item" hidden style="--i:3"><img src="photo4.jpg" alt="" onload="this.closest('.g-item').hidden=false"></figure>
+      <figure class="g-item" hidden style="--i:4"><img src="photo5.jpg" alt="" onload="this.closest('.g-item').hidden=false"></figure>
+      <figure class="g-item" hidden style="--i:5"><img src="photo6.jpg" alt="" onload="this.closest('.g-item').hidden=false"></figure>
+      <figure class="g-item" hidden style="--i:6"><img src="photo7.jpg" alt="" onload="this.closest('.g-item').hidden=false"></figure>
+      <figure class="g-item" hidden style="--i:7"><img src="photo8.jpg" alt="" onload="this.closest('.g-item').hidden=false"></figure>
+      <figure class="g-item" hidden style="--i:8"><img src="photo9.jpg" alt="" onload="this.closest('.g-item').hidden=false"></figure>
+      <figure class="g-item" hidden style="--i:9"><img src="photo10.jpg" alt="" onload="this.closest('.g-item').hidden=false"></figure>
+      <figure class="g-item" hidden style="--i:10"><img src="photo11.jpg" alt="" onload="this.closest('.g-item').hidden=false"></figure>
+      <figure class="g-item" hidden style="--i:11"><img src="photo12.jpg" alt="" onload="this.closest('.g-item').hidden=false"></figure>
+      <figure class="g-item" hidden style="--i:12"><img src="photo13.jpg" alt="" onload="this.closest('.g-item').hidden=false"></figure>
+      <figure class="g-item" hidden style="--i:13"><img src="photo14.jpg" alt="" onload="this.closest('.g-item').hidden=false"></figure>
+      <figure class="g-item" hidden style="--i:14"><img src="photo15.jpg" alt="" onload="this.closest('.g-item').hidden=false"></figure>
+      <figure class="g-item" hidden style="--i:15"><img src="photo16.jpg" alt="" onload="this.closest('.g-item').hidden=false"></figure>
+      <figure class="g-item" hidden style="--i:16"><img src="photo17.jpg" alt="" onload="this.closest('.g-item').hidden=false"></figure>
+      <figure class="g-item" hidden style="--i:17"><img src="photo18.jpg" alt="" onload="this.closest('.g-item').hidden=false"></figure>
+      <figure class="g-item" hidden style="--i:18"><img src="photo19.jpg" alt="" onload="this.closest('.g-item').hidden=false"></figure>
+      <figure class="g-item" hidden style="--i:19"><img src="photo20.jpg" alt="" onload="this.closest('.g-item').hidden=false"></figure>
+    </div>
   </div>
 </main>
 </div><!-- /.page -->
